@@ -1,0 +1,176 @@
+<!-- <div *ngIf="empLogin">
+    <h1>Home Page</h1>
+    <h2><a href="profile-page">{{EmpDetails.empName}}</a></h2>
+    <button (click)="this.Logout()">Logout</button>
+    
+    <div>
+        <button (click)="this.Team('dashboard')">Dashboard</button>
+        <button (click)="this.Team('voice')">Voice</button>
+        <button (click)="this.Team('mobile')">Mobile</button>
+        <button (click)="this.Team('cloud')">Cloud</button>
+        <button (click)="this.Team('firmware')">FirmWare</button>
+    </div>
+    <div *ngFor="let emp of EmployeesList">
+
+        <div>
+            <h3>Name : {{emp.empName}}</h3>
+            <h3>Team Type : {{emp.teamType}}</h3>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="!empLogin">
+    <h1>User not loggedin please <a href="login-page">Login</a></h1>
+</div> -->
+
+<!-- <div class="container">
+    <input type="radio" name="s" id="home" checked>
+    <input type="radio" name="s" id="blog">
+    <input type="radio" name="s" id="code">
+    <input type="radio" name="s" id="help">
+    <input type="radio" name="s" id="about">
+    <nav>
+      <div class="slider"></div>
+      <label class="home" for="home">
+      <i class="fas fa-home"></i>Home
+      </label>
+      <label class="blog" for="blog">
+      <i class="fas fa-blog"></i>Blog
+      </label>
+      <label class="code" for="code">
+        <i class="fas fa-code"></i>Code
+      </label>
+      <label class="help" for="help">
+        <i class="fas fa-envelope"></i>Help
+      </label>
+      <label class="about" for="about">
+        <i class="fas fa-user"></i>About
+      </label>
+    </nav>
+  </div> -->
+
+
+
+
+    
+
+      <nav>
+        <div class="logo">EMPLOYEE DASHBOARD</div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+          <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+          <li><a class="active" href="#">Employees</a></li>
+          <!-- <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li> -->
+          <!-- <li><a href="#">Gallery</a></li> -->
+          <li><a href="profile-page">Profile</a></li>
+        </ul>
+      </nav>
+      <!-- <div class="content"> -->
+        <div class="wrapper1">
+            <input type="checkbox" id="btn" hidden>
+            <label for="btn" class="menu-btn">
+              <i class="fas fa-bars"></i>
+              <i class="fas fa-times"></i>
+            </label>
+            <div id="sidebar1">
+              <div class="title">TEAMS</div>
+              <ul class="list-items">
+                <li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-sliders-h"></i>Voice</a></li>
+                <li><a href="#"><i class="fas fa-address-book"></i>Cloud</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i>Mobile</a></li>
+                <li><a href="#"><i class="fas fa-stream"></i>Firmware</a></li>
+                <!-- <li><a href="#"><i class="fas fa-user"></i>About us</a></li>
+                <li><a href="#"><i class="fas fa-globe-asia"></i>Languages</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i>Contact us</a></li> -->
+                <!-- <div class="icons">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
+                  <a href="#"><i class="fab fa-youtube"></i></a>
+                </div> -->
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <div class="wrapper2">
+                <div class="card front-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                </div>
+                <div class="card back-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                  <div class="info">
+                    <div class="title">Name</div>
+                    <p><b>name@ayla.com</b><br>Team Type</p>
+                  </div>
+                  <ul>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                  </ul>
+                </div>
+            </div>
+            <div class="wrapper2">
+                <div class="card front-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                </div>
+                <div class="card back-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                  <div class="info">
+                    <div class="title">Name</div>
+                    <p><b>name@ayla.com</b><br>Team Type</p>
+                  </div>
+                  <ul>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                  </ul>
+                </div>
+            </div>
+            <div class="wrapper2">
+                <div class="card front-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                </div>
+                <div class="card back-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                  <div class="info">
+                    <div class="title">Name</div>
+                    <p><b>name@ayla.com</b><br>Team Type</p>
+                  </div>
+                  <ul>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                  </ul>
+                </div>
+            </div>
+            <div class="wrapper2">
+                <div class="card front-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                </div>
+                <div class="card back-face">
+                  <img src="https://m.media-amazon.com/images/M/MV5BOGE1MGY2YmQtNGQ1Yy00ZTdmLWEyY2MtMGI4Y2RiMDRhYWYxXkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_.jpg" alt="Flip Card">
+                  <div class="info">
+                    <div class="title">Name</div>
+                    <p><b>name@ayla.com</b><br>Team Type</p>
+                  </div>
+                  <ul>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                  </ul>
+                </div>
+            </div>
+           
+            
+          </div>
+      <!-- </div> -->
+  

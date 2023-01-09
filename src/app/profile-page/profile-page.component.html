@@ -1,0 +1,73 @@
+<!-- <div>
+    <h1>Profile Page</h1>
+    <a href="home-page">Back to Home</a>
+    <div>
+        <h3>{{this.loggedInUserDetails.empName}}</h3>
+        <button (click)="this.Logout()">Logout</button>
+    </div>
+
+    <div>
+        <h3>Personal Details</h3>
+        <div>
+            <b>Mail ID</b> {{this.loggedInUserDetails.empEmail}}
+        </div>
+        <div>
+            <b>Mobile Number</b> {{this.loggedInUserDetails.mobileNumber}}
+        </div>
+        <div>
+            <b>Team Type</b> {{this.loggedInUserDetails.teamType}}
+        </div>
+        <div>
+            <b>DOB</b> {{this.loggedInUserDetails.dob}}
+        </div>
+        <div>
+            <b>Experience</b> {{this.loggedInUserDetails.experience}}
+        </div>
+        <div>
+            <b>Current Location</b> {{this.loggedInUserDetails.currentLocation}}
+        </div>
+    </div>
+    <div>
+        <h3>Professional Details</h3>
+        <div>
+            <b>Skills</b>
+        </div>
+        <div>
+            <b>Git ID</b>
+        </div>
+        <div>
+            <b>Leet code ID</b>
+        </div>
+        <div>
+            <b>Hacker Ranker ID</b>
+        </div>
+    </div>
+</div> -->
+
+<div class="main-box">
+    <div class="content">
+      <input type="checkbox" id="check">
+      <label class="box" for="check">
+      <div class="share">Show Details</div>
+      <div class="cancel">CANCEL</div>
+      <div class="cancel">LOGOUT</div>
+      </label>
+      <div class="image-box">
+        -<img src="https://nationaltoday.com/wp-content/uploads/2021/04/Superhero-1-1-640x514.jpg" alt="">-
+        <div class="about">
+        <div class="details">
+          <div class="name">{{this.loggedInUserDetails?.empName}}</div>
+          <div class="name">{{this.loggedInUserDetails?.dob}}</div>
+          <div class="name">{{this.loggedInUserDetails?.teamType}}</div>
+          <div class="job">Devoloper</div>
+          <!-- <div class="icon">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div> -->
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
