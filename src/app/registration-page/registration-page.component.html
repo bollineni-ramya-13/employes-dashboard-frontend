@@ -50,183 +50,102 @@
         <a href="login-page">Already Have a account</a>
     </div>
 </div> -->
-<div class="main_container">
-
+<div  *ngIf="!signupRes.success"  class="main_container">
 <div class="container">
 
-    <div class="header_title"><span>Registration Form</span></div>
-
-    <form action="#">
-        <div class="form first">
+      <div class="form first">
+            <div class="header_title" ><span>Registration Form</span></div> 
             <div class="details personal">
+                <span *ngIf="signupRes.error" class="error">{{signupRes.message}}</span>
                 <span class="sub_title">Personal Details</span>
 
                 <div class="fields">
                     <div class="input-field">
                         <label>Full Name</label>
-                        <input type="text" placeholder="Enter your name" required>
+                        <input [(ngModel)]="name" type="text" placeholder="Enter your name" required>
                     </div>
 
                     <div class="input-field">
                         <label>Date of Birth</label>
-                        <input type="date" placeholder="Enter birth date" required>
+                        <input type="date" [(ngModel)]="dob" placeholder="Enter birth date" required>
                     </div>
 
                     <div class="input-field">
                         <label>Email</label>
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="text" [(ngModel)]="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="input-field">
                         <label>Mobile Number</label>
-                        <input type="number" placeholder="Enter mobile number" required>
+                        <input type="number" [(ngModel)]="number" placeholder="Enter mobile number" required>
                     </div>
 
                     <div class="input-field">
                         <label>Gender</label>
-                        <select required>
+                        <select required (change)="this.HandleGender($event)">
                             <option disabled selected>Select gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Others</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Others</option>
                         </select>
                     </div>
                     <div class="input-field">
                         <label>Team Type</label>
-                        <select required>
+                        <select required (change)="this.HandleTeamType($event)">
                             <option disabled selected>Select Team</option>
-                            <option>Dashboard</option>
-                            <option>Voice</option>
-                            <option>Cloud</option>
-                            <option>Mobile</option>
-                            <option>Firmware</option>
+                            <option value="dashboard">Dashboard</option>
+                            <option value="voice">Voice</option>
+                            <option value="cloud">Cloud</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="firmare">Firmware</option>
+                            <option value="intern">Intern</option>
                         </select>
                     </div>
 
                     <div class="input-field">
                         <label>Current City</label>
-                        <input type="number" placeholder="Enter city" required>
+                        <input type="text" [(ngModel)]="location"  placeholder="Enter city" required>
                     </div>
 
                     <div class="input-field">
                         <label>Password</label>
-                        <input type="password" placeholder="Enter Password" required>
+                        <input type="password" [(ngModel)]="password" placeholder="Enter Password" required>
                     </div>
 
                     <div class="input-field">
                         <label>Confirm Password</label>
-                        <input type="password" placeholder="Enter Confirm Password" required>
+                        <input type="password" [(ngModel)]="confirmpassword" placeholder="Enter Confirm Password" required>
                     </div>
 
                     
                 </div>
             </div>
 
-            <div class="details ID">
+            <div class="footer-container">
 
-                <div class="buttons">
-                    <!-- <div class="backBtn">
-                        <i class="uil uil-navigator"></i>
-                        <span class="btnText">Back</span>
-                    </div> -->
-                    
-                </div>
-                <button class="sumbit">
+               
+                <button class="sumbit" (click)="this.Register()">
                     <span class="btnText">Submit </span>
                     <i class="uil uil-navigator"></i>
                 </button>
-                <!-- <button class="sumbit">
-                    <span class="btnText"><a href="home-page">Submit</a> </span>
-                    <i class="uil uil-navigator"></i>
-                </button> -->
+                <div class="pass"><a href="login-page">You remembered password?</a></div>
+              
             </div> 
-        </div>
+      </div>
+        
 
-        <!-- <div class="form second">
-            <div class="details address">
-                <span class="title">Address Details</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Address Type</label>
-                        <input type="text" placeholder="Permanent or Temporary" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Nationality</label>
-                        <input type="text" placeholder="Enter nationality" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>State</label>
-                        <input type="text" placeholder="Enter your state" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>District</label>
-                        <input type="text" placeholder="Enter your district" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Block Number</label>
-                        <input type="number" placeholder="Enter block number" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Ward Number</label>
-                        <input type="number" placeholder="Enter ward number" required>
-                    </div>
-                </div>
-            </div>
-
-            <div class="details family">
-                <span class="title">Family Details</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Father Name</label>
-                        <input type="text" placeholder="Enter father name" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Mother Name</label>
-                        <input type="text" placeholder="Enter mother name" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Grandfather</label>
-                        <input type="text" placeholder="Enter grandfther name" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Spouse Name</label>
-                        <input type="text" placeholder="Enter spouse name" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Father in Law</label>
-                        <input type="text" placeholder="Father in law name" required>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Mother in Law</label>
-                        <input type="text" placeholder="Mother in law name" required>
-                    </div>
-                </div>
-
-                <div class="buttons">
-                    <div class="backBtn">
-                        <i class="uil uil-navigator"></i>
-                        <span class="btnText">Back</span>
-                    </div>
-                    
-                    <button class="sumbit">
-                        <span class="btnText">Submit</span>
-                        <i class="uil uil-navigator"></i>
-                    </button>
-                </div>
-            </div> 
-        </div> -->
-    </form>
 </div>
 </div>
+
+<div class="successful_container"  *ngIf="signupRes.success">
+    <div style="display: flex;justify-content: center;">
+        <img  src="https://res.cloudinary.com/dqlfjgkoe/image/upload/v1673419747/check-circle_e0ciz6.gif"  width="200px" height="auto"/>
+        <img  src="https://i.pinimg.com/originals/a0/e7/12/a0e71251460ecb78160b83e5a48618a6.gif"  width="280px" style="position: absolute;" height="auto"/>
+    </div>
+    <span class="success">{{signupRes.message}}</span>
+    <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+        <div class="navigate_links" ><a (click)="this.CreateNewAccount()">You want to create another account ?</a> </div>
+        <div class="navigate_links" ><a  href="login-page">Signin ?</a></div>
+    </div>
+</div>
+

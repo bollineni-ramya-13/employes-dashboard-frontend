@@ -8,51 +8,54 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  empEmail:any=""
-  empPassword:any=""
-  constructor(private router:Router) { }
+  email:any=""
+  password:any=""
+  signinRes:any = {
+    success : false,
+    error:false,
+    message:"Invalid Details"
+  }
+
+  constructor(
+    private router:Router    ) { }
 
   ngOnInit(): void {
   }
 
   HandleLogin(){
-    this.router.navigate(["home-page"])
-  }
 
-  Login(){
+    // console.log(this.email,this.password);
 
-    var EmployeesList:any =localStorage.getItem("EmployeesList")
-
-    EmployeesList = EmployeesList == null ? [] : JSON.parse(EmployeesList)
-
-    var correctCredentials = false
-    for(let i=0;i<EmployeesList.length;i++){
-      if(EmployeesList[i].empEmail == this.empEmail){
-        if(EmployeesList[i].password == this.empPassword){
-          correctCredentials = true
-          localStorage.setItem("loggedInUserDetails",JSON.stringify(EmployeesList[i]))
-          break
-        }
-        else {
-          correctCredentials = false
-        }
+    fetch("http://localhost:5000/signin",{
+      method:"post",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        email:this.email,
+        password:this.password
+      })
+    }).then(res => res.json())
+    .then(data=>{
+      if(data?.status == "200" ){
+        // console.log(data);
+        localStorage.setItem("logged-in-userDtails",JSON.stringify(data))
+        this.router.navigate(['home-page'])
       }
-      else {
+      else if(data?.status == "422"){
+        console.log(data);
+        this.signinRes.error = true;
+        this.signinRes.success = false;
+        this.signinRes.message = data.error
         
-        correctCredentials = false
       }
-    }
-    if(correctCredentials){
-      alert("Login successfully")
-      this.router.navigate(["home-page"])
-    }
-    else {
-      alert("Invalid details")
-    }
-
-    console.log("empEmail",this.empEmail,"empPassword",this.empPassword);
+    }).catch(err=>{
+      console.log(err);
+      
+    })
     
 
+    
   }
 
 }

@@ -23,20 +23,19 @@
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Login Form</span></div>
-        <form action="#">
+        <span *ngIf="signinRes.error" class="error">{{signinRes.message}}</span>
           <div class="row">
             <i class="fa-solid fa-user"></i>
-            <input type="text" placeholder="Email" required>
+            <input type="email" [(ngModel)]="email" placeholder="Email" required>
           </div>
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" required>
+            <input type="password" [(ngModel)]="password" placeholder="Password" required>
           </div>
           <div class="pass"><a href="forget-password-page">Forgot password?</a></div>
           <div class="row button">
             <input (click)="this.HandleLogin()" type="submit" value="Login">
           </div>
           <div class="signup-link">Not a member? <a href="registration-page">Signup now</a></div>
-        </form>
       </div>
     </div>

@@ -8,15 +8,21 @@ import { Router } from '@angular/router';
 })
 export class RegistrationPageComponent implements OnInit {
 
-  employeeName:string =""
-  employeeEmail:string =""
-  currentLocation:string=""
-  mobileNumber:number=0
-  experience:number=0
+  email:string =""
+  location:string=""
+  number:number=0
   password:string=""
   confirmpassword:string=""
   dob:string=""
   teamType:string=""
+  name:any = ""
+  gender:any = ""
+
+  signupRes:any = {
+    success : false,
+    error:false,
+    message:"Registration Successful"
+  }
 
   constructor(private router:Router) { }
 
@@ -25,55 +31,63 @@ export class RegistrationPageComponent implements OnInit {
 
   Register(){
 
-    var EmployeesListData:any = localStorage.getItem("EmployeesList")
+    if(this.password === this.confirmpassword){
+      fetch("http://localhost:5000/signup",{
+      method:"post",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        name:this.name,
+        dob:this.dob,
+        email:this.email,
+        number:this.number,
+        gender:this.gender,
+        teamType:this.teamType,
+        location:this.location,
+        password:this.password
+      })
+    }).then(res => res.json())
+    .then(data=>{
+      
+      if(data?.status == "200" ){
+        // console.log(data);
+        this.signupRes.success = true;
+        this.signupRes.error = false;
 
-    EmployeesListData=EmployeesListData == null ? []:JSON.parse(EmployeesListData)
+        this.signupRes.message = data?.message
+      }
+      else if(data?.status == "422"){
+        console.log(data);
+        this.signupRes.error = true;
+        this.signupRes.success = false;
+        this.signupRes.message = data?.error
+      }
+    }).catch(err=>{
+      this.signupRes.message = err
+    })
 
-    var exists = false;
-    for(let i=0;i<EmployeesListData.length;i++)
-    {
-      if(EmployeesListData[i].empEmail === this.employeeEmail ){
-        
-        exists = true
-        break
-      }
-      else{
-        exists = false
-      }
-    }
-    if(exists){
-      alert("email already exists please try with other Mail ID")
     }
     else {
-      if(this.password === this.confirmpassword){
-        var EmployeeData = {
-          empName:this.employeeName,
-          empEmail:this.employeeEmail,
-          teamType:this.teamType,
-          dob:this.dob,
-          currentLocation:this.currentLocation,
-          mobileNumber:this.mobileNumber,
-          experience:this.experience,
-          password:this.password,
-          confirmPassword:this.confirmpassword
-        }
-        EmployeesListData.push(EmployeeData)
-  
-        localStorage.setItem("EmployeesList",JSON.stringify(EmployeesListData));
+      this.signupRes.error = true;
 
-        this.router.navigate(["login-page"])
-        
-      }
-      else {
-        alert("Password and confirm password did not match")
-        this.password=""
-        this.confirmpassword=""
-      }
+      this.signupRes.message = "Password and Confirm Password are not same"
     }
+
+    // console.log(this.name,this.dob,this.email,this.number,this.gender,this.teamType,this.location,this.password,this.confirmpassword)
+    
+   
   }
 
   HandleTeamType(e:any) {
     this.teamType = e.target.value
+  }
+  HandleGender(e:any) {
+    this.gender = e.target.value
+  }
+  CreateNewAccount(){
+    this.signupRes.error = false;
+    this.signupRes.success = false;
   }
 
 }

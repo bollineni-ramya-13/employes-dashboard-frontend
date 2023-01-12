@@ -8,41 +8,72 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  EmpDetails:any
-  empLogin = false
-  EmployeesList:any
-
-  constructor(private router:Router) { }
+  allEmployeesDetails:any
+  tabValue:any ="allteams"
+  picUrl:any = "https://res.cloudinary.com/dqlfjgkoe/image/upload/v1673422015/user_circle_icon_152504_sjztbt.png"
 
   ngOnInit(): void {
 
-     var loggedInUserDetails:any=localStorage.getItem("loggedInUserDetails")
-     this.EmpDetails = JSON.parse(loggedInUserDetails);
-     if(this.EmpDetails == null){
-      this.empLogin = false
-     }
-     else{
-      this.empLogin = true
-     }
+    this.GetEmployees()
 
-     
-     this.Team('dashboard');
-
-
-  }
-
-  Logout () {
-    localStorage.removeItem("loggedInUserDetails")
-    this.router.navigate(["login-page"])
-  }
-
-  Team (value:any) {
-    var EmployeesList:any = localStorage.getItem("EmployeesList")
-    EmployeesList = JSON.parse(EmployeesList);
-
-    
-    this.EmployeesList = EmployeesList.filter((emp:any)=>emp.teamType===value)
+    let userData:any = localStorage.getItem("logged-in-userDtails")
+    this.picUrl = JSON.parse(userData).user.pic
     
   }
 
+  GetEmployees() {
+    fetch("http://localhost:5000/allemployees",{
+      method:"get",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      
+    }).then(res => res.json())
+    .then(data=>{
+      if(data?.status == "200" ){
+        // console.log(data.employees);
+        this.allEmployeesDetails = data.employees
+      }
+      else if(data?.status == "422"){
+        console.log(data);
+        
+      }
+    }).catch(err=>{
+      console.log(err);
+      
+    })
+  }
+
+  SelectedTeam(teamType:any) {
+
+    if(teamType === "allteams"){
+      this.GetEmployees()
+    }
+    else {
+    fetch("http://localhost:5000/selected",{
+      method:"post",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({
+        teamType:teamType
+      })
+      
+    }).then(res => res.json())
+    .then(data=>{
+      if(data?.status == "200" ){
+        // console.log(data.employees);
+        this.allEmployeesDetails = data.employees
+      }
+      else if(data?.status == "422"){
+        console.log(data);
+        
+      }
+    }).catch(err=>{
+      console.log(err);
+      
+    })    
+  }
+
+  }
 }

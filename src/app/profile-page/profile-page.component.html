@@ -1,73 +1,93 @@
-<!-- <div>
-    <h1>Profile Page</h1>
-    <a href="home-page">Back to Home</a>
-    <div>
-        <h3>{{this.loggedInUserDetails.empName}}</h3>
-        <button (click)="this.Logout()">Logout</button>
-    </div>
+<div class="container">
+    <div *ngIf="profileDetails" class="form first">
+          <div class="header_title" ><span>Profile Details</span></div> 
+          <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+            <div style="display: flex;">
+                <div  style="display: flex;flex-direction: column;align-items: center;justify-content: center;margin-bottom: 15px;">
+                    <img class="preview-img" src={{profileDetails.pic}} alt="Flip Card">
+                    <span class="profile-headers">{{profileDetails.name}}</span>
+                    <span *ngIf="uploadPic" class="profile-headers instruction-msg">Your Present Picture</span> 
+                    <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+                </div>
+                <div class="new_preview_image" *ngIf="url && uploadPic">
+                    <img class="preview-img"  [src]="url" >
+                    <span class="profile-headers instruction-msg">Your New Picture</span>
+                    <span *ngIf="errorRes.error" class="profile-headers instruction-error-msg">{{errorRes.message}}</span>
+                </div>
+            </div>
+            <div>
+                <span *ngIf="!uploadPic" class="choose_img_btn">
+                    Choose Image
+                </span>
+                <input class="choose_image" *ngIf="!uploadPic" type="file" (change)="selectFile($event)">
+            </div>
 
-    <div>
-        <h3>Personal Details</h3>
-        <div>
-            <b>Mail ID</b> {{this.loggedInUserDetails.empEmail}}
-        </div>
-        <div>
-            <b>Mobile Number</b> {{this.loggedInUserDetails.mobileNumber}}
-        </div>
-        <div>
-            <b>Team Type</b> {{this.loggedInUserDetails.teamType}}
-        </div>
-        <div>
-            <b>DOB</b> {{this.loggedInUserDetails.dob}}
-        </div>
-        <div>
-            <b>Experience</b> {{this.loggedInUserDetails.experience}}
-        </div>
-        <div>
-            <b>Current Location</b> {{this.loggedInUserDetails.currentLocation}}
-        </div>
-    </div>
-    <div>
-        <h3>Professional Details</h3>
-        <div>
-            <b>Skills</b>
-        </div>
-        <div>
-            <b>Git ID</b>
-        </div>
-        <div>
-            <b>Leet code ID</b>
-        </div>
-        <div>
-            <b>Hacker Ranker ID</b>
-        </div>
-    </div>
-</div> -->
+            <div *ngIf="uploadPic"  class="btn-img-grp">
+                <button class="logout" (click)="this.CancelUpload()">
+                    Cancel
+                </button>
 
-<div class="main-box">
-    <div class="content">
-      <input type="checkbox" id="check">
-      <label class="box" for="check">
-      <div class="share">Show Details</div>
-      <div class="cancel">CANCEL</div>
-      <div class="cancel">LOGOUT</div>
-      </label>
-      <div class="image-box">
-        -<img src="https://nationaltoday.com/wp-content/uploads/2021/04/Superhero-1-1-640x514.jpg" alt="">-
-        <div class="about">
-        <div class="details">
-          <div class="name">{{this.loggedInUserDetails?.empName}}</div>
-          <div class="name">{{this.loggedInUserDetails?.dob}}</div>
-          <div class="name">{{this.loggedInUserDetails?.teamType}}</div>
-          <div class="job">Devoloper</div>
-          <!-- <div class="icon">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div> -->
-        </div>
-        </div>
-      </div>
+                <div>
+                    <span *ngIf="errorRes.error" class="choose_img_btn">
+                        Try another image
+                    </span>
+                    <input class="choose_image" *ngIf="errorRes.error" type="file" (change)="selectFile($event)">
+                </div>
+                
+                <button class="logout" *ngIf="!errorRes.error" (click)="this.UploadImage()">
+                    Upload Image
+                </button>             
+            </div>
+          </div>
+          <div class="details personal" style="margin: 5px 0;text-align: center;">
+
+
+              <div class="fields">
+                  <!-- <div class="input-field">
+                      <label>Full Name</label>
+                      <span class="profile-headers">{{profileDetails.name}}</span>
+                  </div> -->
+
+                  <div class="input-field">
+                      <label>Date of Birth</label>
+                      <span class="profile-headers">{{profileDetails.dob}}</span>
+                  </div>
+
+                  <div class="input-field">
+                      <label>Email</label>
+                      <span class="profile-headers">{{profileDetails.email}}</span>
+                  </div>
+
+                  <div class="input-field">
+                      <label>Mobile Number</label>
+                      <span class="profile-headers">{{profileDetails.number}}</span>
+                  </div>
+
+                  <div class="input-field">
+                      <label>Gender</label>
+                      <span class="profile-headers">{{profileDetails.gender}}</span>
+                      
+                  </div>
+                  <div class="input-field">
+                      <label>Team Type</label>
+                      <span class="profile-headers">{{profileDetails.teamType}}</span>
+                      
+                  </div>
+
+                  <div class="input-field">
+                      <label>Current City</label>
+                      <span class="profile-headers">{{profileDetails.location}}</span>
+                  </div>
+                  
+              </div>
+          </div>
+         <div style="display: flex;justify-content: center;gap:20px;">
+            <button class="logout" (click)="this.Back()">
+                back
+            </button>
+            <button class="logout" (click)="this.Logout()">
+                Logout
+            </button>
+         </div>      
     </div>
-    </div>
+</div>
