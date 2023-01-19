@@ -1,26 +1,4 @@
-<!-- <div>
-    <h1>Login Page</h1>
-    <div>
-        <div>
-            <label>Employee Email</label>
-            <input type="email" [(ngModel)]="empEmail" />
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="password" [(ngModel)]="empPassword"/>
-        </div>
-        <div>
-            <button (click)="this.Login()">Login</button>
-            <a href="registration-page">Create new account</a>
-        </div>
-        <div>
-            <a href="forget-password-page">Forget Password?</a>
-        </div>
-    </div>
-</div> -->
-
-
-    <div class="container">
+    <div class="container" >
       <div class="wrapper">
         <div class="title"><span>Login Form</span></div>
         <span *ngIf="signinRes.error" class="error">{{signinRes.message}}</span>

@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit {
     error:false,
     message:"Invalid Details"
   }
+  test:any = false
 
   constructor(
     private router:Router    ) { }
